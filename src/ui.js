@@ -1,5 +1,6 @@
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import React, { createRef } from "react";
+import Display from "./display";
 
 class Ui extends React.Component {
   // constructor
@@ -30,11 +31,15 @@ class Ui extends React.Component {
 
       this.setState((prevState) => {
         return {
-          lists: prevState.lists.push(newList),
+          //         adding the new items to the state...
+          lists: prevState.lists.concat(newList),
         };
       });
       this.inputRef.current.value = "";
+
+      console.log(this.state.lists);
     }
+
     // prvent default loading
     e.preventDefault();
   }
@@ -57,6 +62,9 @@ class Ui extends React.Component {
               Add
             </button>
           </form>
+        </div>
+        <div className="mt-3">
+          <Display addedItem={this.state.lists} />
         </div>
       </div>
     );
