@@ -2,10 +2,22 @@ import React from "react";
 import { Component } from "react/cjs/react.production.min";
 
 class Display extends Component {
+  constructor(props) {
+    super(props);
+
+    // bind the createList with this
+    this.createLists = this.createLists.bind(this);
+  }
+
+  // the delete function to pass in the event handler
+  delete(key) {
+    this.props.deleteItem(key);
+  }
   // creating a list method
   createLists(list) {
     return (
-      <li key={list.key} className="list-group-item">
+      // creating the list and adding a click event handler for deleting
+      <li key={list.key} className="list-group-item" onClick={() => this.delete(list.key)}>
         {list.text}
       </li>
     );

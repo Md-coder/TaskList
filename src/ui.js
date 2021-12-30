@@ -17,6 +17,8 @@ class Ui extends React.Component {
 
     //    bindinding this to the addList to have access to the this outside the constructor
     this.addLists = this.addLists.bind(this);
+    //    bindinding this to the deleteList to have access to the this outside the constructor
+    this.deleteList = this.deleteList.bind(this);
   }
 
   //   creating the addList function
@@ -44,6 +46,17 @@ class Ui extends React.Component {
     e.preventDefault();
   }
 
+  // delete function
+  deleteList(key) {
+    // filter the added lists array and return the value whose key isnt = key
+    let updatedList = this.state.lists.filter((list) => list.key !== key);
+
+    // pass the values back to the set state
+    this.setState({
+      lists: updatedList,
+    });
+  }
+
   render() {
     return (
       <div className="container mt-5">
@@ -64,7 +77,7 @@ class Ui extends React.Component {
           </form>
         </div>
         <div className="mt-3">
-          <Display addedItem={this.state.lists} />
+          <Display addedItem={this.state.lists} deleteItem={this.deleteList} />
         </div>
       </div>
     );
