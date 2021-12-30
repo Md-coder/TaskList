@@ -1,4 +1,3 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import React, { createRef } from "react";
 import Display from "./display";
 
@@ -38,8 +37,6 @@ class Ui extends React.Component {
         };
       });
       this.inputRef.current.value = "";
-
-      console.log(this.state.lists);
     }
 
     // prvent default loading
